@@ -311,6 +311,14 @@ span{
     }
 }
 @media(max-width:895px){
+    .heading{
+        font-size: 5rem;
+    }
+    .input-group,
+    .input-group-2{
+        margin-left: 10%;
+        margin-right: 10%;
+    }
     #menu-icon{
         display: block;
     }
