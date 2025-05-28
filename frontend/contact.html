@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About us</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Contact us</title>
+    <link rel="stylesheet" href="../frontend/CSS/styles.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&amp;family=Poppins:wght@100;400&amp;display=swap"
@@ -16,33 +16,40 @@
            <span>Analysis</span></a>
            <i class='bx bx-menu' id="menu-icon" ></i>
         <nav class="navbar">     
-           <a href="index.html" >Home</a>                       
-           <a href="about.html" class="active">About</a>
-           <a href="contact.html">Contact</a>     
+           <a href="index.html">Home</a>                       
+           <a href="about.html">About</a>
+           <a href="contact.html" class="active">Contact</a>     
            <!-- <a href="#" class="login">Log in</a>       
            <a href="#" class="signup">Sign up</a>       -->
        </nav>
    </header>
 
-   <section class="about" id="about">
-    
-    <div class="about-content">
-        <h2>About <span>Us</span></h2>
-        <p>
-            At AI Analysis, we combine artificial
-            intelligence with UI/UX analysis to help
-            designers improve their designs effortlessly.
-            Our goal is to provide smart tools that understand design,
-            deliver accurate feedback, and enhance user experience.
-            Join us and take user experience to the next level! 🚀
-        </p>
-        <a href="#" class="btn">Read More</a>
-    </div> 
-    <div class="about-img">
-        <img src="about.jpg" alt="Logo picture">
-    </div>
-   </section>
-    <footer class="footer">
+    <section class="contact" id="contact">
+        <h2 class="heading">Contact <span>Us</span></h2>
+           <form action="">
+               <div class="input-group">
+                   <div class="input-box">
+                    <input type="text"
+                    placeholder="Full Name">
+                    <input type="email"
+                    placeholder="Email">
+                   </div>
+                   <div class="input-box">
+                       <input type="type"
+                       placeholder="Phone Number">
+                       <input type="text"
+                       placeholder="subject">
+                   </div>
+               </div>
+               <div class="input-group-2">
+                <textarea name="" id="" cols="30" rows="10" placeholder="Your Message">
+               </textarea>
+                <input type="submit" value="Send Message" class="btn">
+               </div>
+           </form>
+       </section>
+
+       <footer class="footer">
         <div class="social-icons">
             <a href="https://www.linkedin.com/in/asma-alghamdi-885a332b6?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"><i class='bx bxl-linkedin' ></i></a>
             <a href="https://github.com/AsmaAlghamdi1"><i class='bx bxl-github' ></i></a>
@@ -63,6 +70,6 @@
             &copy; AI Analysis | All Rights Reserved
         </p>
     </footer>
-    <script src="script.js"></script>
+    <script src="../frontend/JS/script.js"></script>
 </body>
 </html>

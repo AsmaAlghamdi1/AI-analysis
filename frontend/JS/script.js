@@ -2,6 +2,9 @@ let menuIcon=document.querySelector("#menu-icon");
 let navbar = document.querySelector(".navbar");
 let sections = document.querySelectorAll("section");
 let navLink = document.querySelectorAll("header nav a");
+document.getElementById('start').addEventListener('click',()=>{
+    document.querySelector('.analysis-section').style.display='flex'
+});
 
 window.onscroll = () => {
     sections.forEach(sec =>{
@@ -24,3 +27,4 @@ menuIcon.onclick = () =>{
     menuIcon.classList.toggle("bx-x");
     navbar.classList.toggle("active");
 }
+

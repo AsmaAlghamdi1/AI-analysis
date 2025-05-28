@@ -160,7 +160,7 @@ section{
     transition: 0.3s ease-in-out;
     cursor: pointer;
     height: 6rem;
-}
+} 
 .btn:hover{
     transform: scale(1.05);
     box-shadow: 0 0 50px var(--main-color);
@@ -169,18 +169,7 @@ section{
     display: flex;
     align-items: center;
     gap: 1.5rem;
-}
-.btn-group a:nth-last-of-type(2){
-    background-color: black;
-    color: var(--main-color);
-    border:2px solid var(--main-color);
-    box-shadow: 0 0 25px transparent;
-}
-.btn-group a:nth-of-type(2):hover{
-    box-shadow: 0 0 25px var(--main-color);
-    background-color: var(--main-color);
-    color: black;
-}
+} 
 
 span{
     color: var(--main-color);
@@ -395,3 +384,45 @@ span{
     }
 
 }
+
+.analysis-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    margin-top: 20px;
+    backdrop-filter: blur(6px);
+    display: none;
+}
+.analysis-section form{
+    background: var(--second-bg-color);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 500px;
+    
+}
+.analysis-section input{
+    width: 100%;
+   padding: 2.5rem;
+   font-size:1.8rem;
+   color:var(--text-color);
+   border-radius: 2rem;
+   border:2px solid var(--main-color);
+   margin: 1.5rem 0;
+   resize: none;
+}
+
+.analysis-UI{
+    padding: 1rem;
+   font-size:1.8rem;
+   color:var(--text-color);
+   border-radius: 1rem;
+   border:2px solid var(--main-color);
+   margin: 1.5rem 0;
+   resize: none;
+}
+.analysis-section h1{
+    align-content: center;
+}
+
