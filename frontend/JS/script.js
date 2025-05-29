@@ -2,9 +2,12 @@ let menuIcon=document.querySelector("#menu-icon");
 let navbar = document.querySelector(".navbar");
 let sections = document.querySelectorAll("section");
 let navLink = document.querySelectorAll("header nav a");
-document.getElementById('start').addEventListener('click',()=>{
-    document.querySelector('.analysis-section').style.display='flex'
-});
+// document.getElementById('start').addEventListener('click',()=>{
+//     document.getElementById('blurBg').style.display='flex'
+// });
+// document.getElementById('close-btn').addEventListener('click',()=>{
+//     document.getElementById('blurBg').style.display='none'
+// });
 
 window.onscroll = () => {
     sections.forEach(sec =>{
@@ -28,3 +31,9 @@ menuIcon.onclick = () =>{
     navbar.classList.toggle("active");
 }
 
+document.getElementById('start').addEventListener('click',()=>{
+    document.getElementById('blurBg').style.display='flex'
+});
+document.getElementById('close-btn').addEventListener('click',()=>{
+    document.getElementById('blurBg').style.display='none'
+});
