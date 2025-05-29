@@ -90,11 +90,6 @@ section{
     justify-content: center;
     margin-top: 3rem;
 }
-/* .home-content p{
-    margin-bottom: 2rem;
-    margin-top: 1rem;
-    font-size: 3.5rem;
-} */
 .home-content h1{
     font-size: 7rem;
     font-weight: 700;
@@ -386,16 +381,7 @@ span{
 
 }
 
-/* .analysis-section{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: auto;
-    margin-top: 20px;
-    backdrop-filter: blur(6px);
-    display: none;
-} */
- /* فورم التحليل داخل طبقة مغبشة */
+
 .blur-background {
     position: fixed;
     top: 0;
@@ -422,23 +408,16 @@ span{
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     width: 500px;
 }
-/* .analysis-section form{
-    background: var(--second-bg-color);
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    width: 500px;
-    
-} */
+
 .analysis-section input{
     width: 100%;
-   padding: 2.5rem;
+   padding: 0.8rem;
    font-size:1.8rem;
    color:var(--text-color);
-   border-radius: 2rem;
+   border-radius: 1rem;
    border:2px solid var(--main-color);
-   margin: 1.5rem 0;
-   resize: none;
+   margin-top: 1rem;
+   height: 5rem;
 }
 
 .analysis-UI{
@@ -462,4 +441,24 @@ span{
     cursor: pointer;
     font-weight: bold;
     z-index: 1001;
+}
+
+#btn{
+    display: inline-block;
+    padding: 1rem 2.8rem;
+    background: var(--main-color);
+    box-shadow: 0 0 15px var(--main-color);
+    border-radius: 4rem;
+    font-size: 1.6rem;
+    color: black;
+    border:2px solid transparent;
+    letter-spacing: 0.1rem;
+    font-weight: 600;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+    height: 6rem;
+} 
+#btn:hover{
+    transform: scale(1.05);
+    box-shadow: 0 0 50px var(--main-color);
 }
