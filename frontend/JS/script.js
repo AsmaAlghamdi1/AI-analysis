@@ -30,16 +30,20 @@ menuIcon.onclick = () =>{
     menuIcon.classList.toggle("bx-x");
     navbar.classList.toggle("active");
 }
+document.addEventListener('DOMContentLoaded',function(){
+    const start=document.getElementById('start');
+    if(start){
+        start.addEventListener('click',()=>{
+            document.getElementById('blurBg').style.display='flex'
+        });
+        document.getElementById('close-btn').addEventListener('click',()=>{
+            document.getElementById('blurBg').style.display='none'
+        });
+    }
 
-document.getElementById('start').addEventListener('click',()=>{
-    document.getElementById('blurBg').style.display='flex'
-});
-document.getElementById('close-btn').addEventListener('click',()=>{
-    document.getElementById('blurBg').style.display='none'
-});
 
 //Send data from frontend to backend 
-document.addEventListener('DOMContentLoaded',function(){
+
     const form=document.getElementById('contact-form');
     if(form){
         form.addEventListener('submit',async (e)=>{
