@@ -386,6 +386,8 @@ span{
     position: fixed;
     top: 0;
     left: 0;
+    width: 80%;
+    height: 80%;
     backdrop-filter: blur(6px);
     background-color: rgba(0, 0, 0, 0.2);
     z-index: 999;
