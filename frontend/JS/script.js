@@ -39,27 +39,32 @@ document.getElementById('close-btn').addEventListener('click',()=>{
 });
 
 //Send data from frontend to backend 
-document.getElementsByClassName('contact-form')[0].addEventListener('submit',async (e)=>{
-     e.preventDefault();     
-    let fullname = document.getElementById('full-name').value.trim();
-    let email = document.getElementById('email').value.trim();
-    let subject = document.getElementById('subject').value.trim();
-    let message = document.getElementById('message').value.trim();
-    
-   await fetch("https://ai-analysis-4n6p.onrender.com/contact", {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ fullname, email, subject, message })
-    })
-    .then(res => res.json())
-    .then(data => {
-        console.log("✅ Success:", data);
-        alert("✅ تمت الإرسال بنجاح");
-    })
-    .catch(err => {
-        console.error("❌ Error:", err);
-        alert("❌ حدث خطأ أثناء الإرسال");
+document.addEventListener('DOMContentLoaded',function(){
+    const form=document.getElementById('contact-form');
+    if(form){
+        form.addEventListener('submit',async (e)=>{
+            e.preventDefault();     
+            let fullname = document.getElementById('full-name').value.trim();
+            let email = document.getElementById('email').value.trim();
+            let subject = document.getElementById('subject').value.trim();
+            let message = document.getElementById('message').value.trim();
+            
+        await fetch("https://ai-analysis-4n6p.onrender.com/contact", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ fullname, email, subject, message })
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log("✅ Success:", data);
+                alert("✅ تمت الإرسال بنجاح");
+            })
+            .catch(err => {
+                console.error("❌ Error:", err);
+                alert("❌ حدث خطأ أثناء الإرسال");
+            });
+        });
+    }
     });
-});
