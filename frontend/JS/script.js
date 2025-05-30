@@ -46,13 +46,20 @@ document.getElementById('contact-form').addEventListener('submit',async (e)=>{
     let subject = document.getElementById('subject').value.trim();
     let message = document.getElementById('message').value.trim();
     
-    await fetch("/contact",{
-        method:"POST",
-        headers :{
-            "Content-Type":"application/json"
-        },
-        body:JSON.stringify({
-            fullname,email,subject,message
-        })
+   await fetch("https://ai-analysis-4n6p.onrender.com/contact", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ fullname, email, subject, message })
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log("✅ Success:", data);
+        alert("✅ تمت الإرسال بنجاح");
+    })
+    .catch(err => {
+        console.error("❌ Error:", err);
+        alert("❌ حدث خطأ أثناء الإرسال");
     });
 });
