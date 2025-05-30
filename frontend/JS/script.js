@@ -38,7 +38,21 @@ document.getElementById('close-btn').addEventListener('click',()=>{
     document.getElementById('blurBg').style.display='none'
 });
 
-let fullname = document.getElementById('full-name').value.trim();
-let email = document.getElementById('email').value.trim();
-let subject = document.getElementById('subject').value.trim();
-let message = document.getElementById('message').value.trim();
+//Send data from frontend to backend 
+document.getElementById('contact-form').addEventListener('submit',async (e)=>{
+     e.preventDefault();     
+    let fullname = document.getElementById('full-name').value.trim();
+    let email = document.getElementById('email').value.trim();
+    let subject = document.getElementById('subject').value.trim();
+    let message = document.getElementById('message').value.trim();
+    
+    await fetch("https://ai-analysis-4n6p.onrender.com/contact",{
+        method:"POST",
+        headers :{
+            "Content-Type":"app;ication/json"
+        },
+        body:JSON.stringify({
+            fullname,email,subject,message
+        })
+    });
+});
