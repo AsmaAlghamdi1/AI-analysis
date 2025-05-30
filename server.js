@@ -36,7 +36,6 @@ app.post('/contact',(req,res)=>{
       res.status(500).json({ message: 'خطأ في السيرفر' });
     } else {
       res.status(200).json({ message: 'تم استلام البيانات بنجاح' });
-      alert('data sbmitted sucsasfully');
     }
   });
 });

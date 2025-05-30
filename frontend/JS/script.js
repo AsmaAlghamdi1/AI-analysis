@@ -49,7 +49,7 @@ document.getElementById('contact-form').addEventListener('submit',async (e)=>{
     await fetch("https://ai-analysis-4n6p.onrender.com/contact",{
         method:"POST",
         headers :{
-            "Content-Type":"app;ication/json"
+            "Content-Type":"application/json"
         },
         body:JSON.stringify({
             fullname,email,subject,message
