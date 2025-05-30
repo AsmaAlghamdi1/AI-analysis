@@ -62,12 +62,13 @@ document.addEventListener('DOMContentLoaded',function(){
             })
             .then(res => res.json())
             .then(data => {
-                console.log("✅ Success:", data);
-                alert("✅ تمت الإرسال بنجاح");
+                console.log("Success:", data);
+                alert("Your message has been successfully sent");
+                form.reset();
             })
             .catch(err => {
-                console.error("❌ Error:", err);
-                alert("❌ حدث خطأ أثناء الإرسال");
+                console.error("Error:", err);
+                alert('Submission failed!');
             });
         });
     }
