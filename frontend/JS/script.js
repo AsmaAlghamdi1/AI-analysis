@@ -39,7 +39,7 @@ document.getElementById('close-btn').addEventListener('click',()=>{
 });
 
 //Send data from frontend to backend 
-document.getElementById('contact-form').addEventListener('submit',async (e)=>{
+document.getElementsByClassName('contact-form')[0].addEventListener('submit',async (e)=>{
      e.preventDefault();     
     let fullname = document.getElementById('full-name').value.trim();
     let email = document.getElementById('email').value.trim();
