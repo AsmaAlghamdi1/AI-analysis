@@ -37,3 +37,8 @@ document.getElementById('start').addEventListener('click',()=>{
 document.getElementById('close-btn').addEventListener('click',()=>{
     document.getElementById('blurBg').style.display='none'
 });
+
+let fullname = document.getElementById('full-name').value.trim();
+let email = document.getElementById('email').value.trim();
+let subject = document.getElementById('subject').value.trim();
+let message = document.getElementById('message').value.trim();
