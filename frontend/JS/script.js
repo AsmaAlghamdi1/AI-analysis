@@ -46,7 +46,7 @@ document.getElementById('contact-form').addEventListener('submit',async (e)=>{
     let subject = document.getElementById('subject').value.trim();
     let message = document.getElementById('message').value.trim();
     
-    await fetch("https://ai-analysis-4n6p.onrender.com/contact",{
+    await fetch("/contact",{
         method:"POST",
         headers :{
             "Content-Type":"application/json"
