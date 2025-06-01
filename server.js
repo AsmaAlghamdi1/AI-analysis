@@ -60,6 +60,7 @@ app.post("/analyze", upload.single("image"), async (req, res) => {
 
   try {
     const base64Image = fileToBase64(imagePath);
+    console.log("Received file:", req.file);
 
     const result = await model.generateContent({
       contents: [
@@ -85,7 +86,8 @@ app.post("/analyze", upload.single("image"), async (req, res) => {
     // احذف الصورة المؤقتة
     fs.unlinkSync(imagePath);
 
-    res.json({ result: text });
+    const output = await result.text();
+res.json({ result: output });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Failed to analyze image." });

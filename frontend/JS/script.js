@@ -96,6 +96,7 @@ document.addEventListener('DOMContentLoaded',function(){
     })
       .then((res) => res.json())
       .then((data) => {
+         console.log("Server Response:", data);
         document.querySelector(".analysis-UI").innerHTML = data.result;
       })
       .catch((err) => {
