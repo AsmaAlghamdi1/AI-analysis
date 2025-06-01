@@ -1,3 +1,4 @@
+document.addEventListener('DOMContentLoaded',function(){
 let menuIcon=document.querySelector("#menu-icon");
 let navbar = document.querySelector(".navbar");
 let sections = document.querySelectorAll("section");
@@ -30,7 +31,7 @@ menuIcon.onclick = () =>{
     menuIcon.classList.toggle("bx-x");
     navbar.classList.toggle("active");
 }
-document.addEventListener('DOMContentLoaded',function(){
+
     const start=document.getElementById('start');
     if(start){
         start.addEventListener('click',()=>{

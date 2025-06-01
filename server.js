@@ -90,7 +90,8 @@ app.post("/analyze", upload.single("image"), async (req, res) => {
     fs.unlinkSync(imagePath);
 
     const output = await result.text();
-res.json({ result: output });
+    res.json({ result: output });
+
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Failed to analyze image." });
