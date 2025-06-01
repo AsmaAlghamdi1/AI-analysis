@@ -59,8 +59,11 @@ app.post("/analyze", upload.single("image"), async (req, res) => {
   const prompt = req.body.prompt;
 
   try {
-    const base64Image = fileToBase64(imagePath);
     console.log("Received file:", req.file);
+    const base64Image = fileToBase64(imagePath);
+    
+    const imageData = await readFileAsBase64(imagePath);
+    console.log("Image base64 length:", imageData.length); 
 
     const result = await model.generateContent({
       contents: [
