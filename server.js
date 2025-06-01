@@ -47,7 +47,7 @@ app.post('/contact',(req,res)=>{
 
 const genAI = new GoogleGenerativeAI(process.env.API); // استبدل بـ API Key الحقيقي
 
-const model = genAI.getGenerativeModel({ model: "gemini-pro-vision" });
+const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro-vision" });
 
 function fileToBase64(filePath) {
   const fileData = fs.readFileSync(filePath);
