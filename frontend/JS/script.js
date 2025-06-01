@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded',function(){
     })
       .then((res) => res.json())
       .then((data) => {
-        document.querySelector(".analysis-UI").textContent = data.result;
+        document.querySelector(".analysis-UI").innerHTML = data.result;
       })
       .catch((err) => {
         console.error("Error:", err);
@@ -104,4 +104,3 @@ document.addEventListener('DOMContentLoaded',function(){
       });
   });
     });
-    
