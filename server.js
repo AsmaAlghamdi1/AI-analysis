@@ -54,16 +54,13 @@ function fileToBase64(filePath) {
   return fileData.toString("base64");
 }
 
-app.post("/analyze", upload.single("image"), async (req, res) => {
+app.post('/analyze', upload.single("image"), async (req, res) => {
   const imagePath = req.file.path;
   const prompt = req.body.prompt;
 
   try {
     console.log("Received file:", req.file);
-    const base64Image = fileToBase64(imagePath);
-    
-    const imageData = await readFileAsBase64(imagePath);
-    console.log("Image base64 length:", imageData.length); 
+    const base64Image = fs.readFileSync(imagePath).toString("base64");
 
     const result = await model.generateContent({
       contents: [
@@ -84,19 +81,62 @@ app.post("/analyze", upload.single("image"), async (req, res) => {
     });
 
     const response = await result.response;
-    const text = response.text();
+    const text = response.text(); // هذا هو الصح
 
-    // احذف الصورة المؤقتة
-    fs.unlinkSync(imagePath);
+    fs.unlinkSync(imagePath); // حذف الصورة المؤقتة بعد ما تخلص
 
-    const output = await result.text();
-    res.json({ result: output });
+    res.json({ result: text });
 
   } catch (err) {
-    console.error(err);
+    console.error("Analysis error:", err);
     res.status(500).json({ error: "Failed to analyze image." });
   }
 });
+
+
+// app.post("/analyze", upload.single("image"), async (req, res) => {
+//   const imagePath = req.file.path;
+//   const prompt = req.body.prompt;
+
+//   try {
+//     console.log("Received file:", req.file);
+//     const base64Image = fileToBase64(imagePath);
+    
+//     const imageData = await readFileAsBase64(imagePath);
+//     console.log("Image base64 length:", imageData.length); 
+
+//     const result = await model.generateContent({
+//       contents: [
+//         {
+//           parts: [
+//             {
+//               inlineData: {
+//                 mimeType: req.file.mimetype,
+//                 data: base64Image,
+//               },
+//             },
+//             {
+//               text: prompt,
+//             },
+//           ],
+//         },
+//       ],
+//     });
+
+//     const response = await result.response;
+//     const text = response.text();
+
+//     // احذف الصورة المؤقتة
+//     fs.unlinkSync(imagePath);
+
+//     const output = await result.text();
+//     res.json({ result: output });
+
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).json({ error: "Failed to analyze image." });
+//   }
+// });
 
 
 
