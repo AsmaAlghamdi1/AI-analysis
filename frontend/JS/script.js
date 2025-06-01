@@ -91,7 +91,7 @@ menuIcon.onclick = () =>{
     const prompt = "Please provide a comprehensive analysis of this UI design from a UX/UI perspective. Evaluate the color scheme, contrast, whitespace, typography, element spacing, icon sizing, layout alignment, and overall user experience. Highlight both strengths and weaknesses, and suggest specific, actionable improvements with clear reasoning for each point.";
     formData.append("prompt", prompt);
 
-    fetch("https://ai-analysis-4n6p.onrender.com//analyze", {
+    fetch("https://ai-analysis-4n6p.onrender.com/analyze", {
       method: "POST",
       body: formData,
     })
