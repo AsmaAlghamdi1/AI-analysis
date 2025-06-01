@@ -98,7 +98,7 @@ menuIcon.onclick = () =>{
       .then((res) => res.json())
       .then((data) => {
          console.log("Server Response:", data);
-        document.querySelector(".analysis-UI").innerHTML = data.result;
+        document.querySelector(".analysis-UI").textContent = data.result;
       })
       .catch((err) => {
         console.error("Error:", err);
