@@ -81,15 +81,17 @@ app.post('/analyze', upload.single("image"), async (req, res) => {
     });
 
     const response = await result.response;
-    const text = response.text(); // هذا هو الصح
+    const text = await response.text(); // هذا هو الصح
 
     fs.unlinkSync(imagePath); // حذف الصورة المؤقتة بعد ما تخلص
 
     res.json({ result: text });
 
   } catch (err) {
-    console.error("Analysis error:", err);
+    console.error("Error in /analyze:", err.message, err.stack);
     res.status(500).json({ error: "Failed to analyze image." });
+    // console.error("Analysis error:", err);
+    // res.status(500).json({ error: "Failed to analyze image." });
   }
 });
 
