@@ -72,4 +72,36 @@ document.addEventListener('DOMContentLoaded',function(){
             });
         });
     }
+
+    document.getElementById("btn").addEventListener("click", (e) => {
+    e.preventDefault(); 
+
+    const fileInput = document.querySelector('input[type="file"]');
+    const file = fileInput.files[0];
+
+    if (!file) {
+      alert("Please select an image.");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("image", file);
+
+    const prompt = "Please provide a comprehensive analysis of this UI design from a UX/UI perspective. Evaluate the color scheme, contrast, whitespace, typography, element spacing, icon sizing, layout alignment, and overall user experience. Highlight both strengths and weaknesses, and suggest specific, actionable improvements with clear reasoning for each point.";
+    formData.append("prompt", prompt);
+
+    fetch("https://ai-analysis-4n6p.onrender.com/analyze", {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        document.querySelector(".analysis-UI").textContent = data.result;
+      })
+      .catch((err) => {
+        console.error("Error:", err);
+        alert("حدث خطأ أثناء تحليل التصميم.");
+      });
+  });
     });
+    

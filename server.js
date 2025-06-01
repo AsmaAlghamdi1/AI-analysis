@@ -2,11 +2,15 @@ const express = require('express');
 const cors = require('cors');
 const mysql = require('mysql2');
 const dotenv = require('dotenv');
+const multer = require("multer");
+const fs = require("fs");
 
 dotenv.config();
 
 const app=express();
 const PORT = process.env.PORT || 3000;
+const { GoogleGenerativeAI } = require("@google/generative-ai");
+const upload = multer({ dest: "uploads/" });
 
 app.use(cors());
 app.use(express.json());
@@ -39,6 +43,55 @@ app.post('/contact',(req,res)=>{
     }
   });
 });
+
+
+const genAI = new GoogleGenerativeAI(process.env.API); // استبدل بـ API Key الحقيقي
+
+const model = genAI.getGenerativeModel({ model: "gemini-pro-vision" });
+
+function fileToBase64(filePath) {
+  const fileData = fs.readFileSync(filePath);
+  return fileData.toString("base64");
+}
+
+app.post("/analyze", upload.single("image"), async (req, res) => {
+  const imagePath = req.file.path;
+  const prompt = req.body.prompt;
+
+  try {
+    const base64Image = fileToBase64(imagePath);
+
+    const result = await model.generateContent({
+      contents: [
+        {
+          parts: [
+            {
+              inlineData: {
+                mimeType: req.file.mimetype,
+                data: base64Image,
+              },
+            },
+            {
+              text: prompt,
+            },
+          ],
+        },
+      ],
+    });
+
+    const response = await result.response;
+    const text = response.text();
+
+    // احذف الصورة المؤقتة
+    fs.unlinkSync(imagePath);
+
+    res.json({ result: text });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Failed to analyze image." });
+  }
+});
+
 
 
 app.listen(PORT,()=>{
