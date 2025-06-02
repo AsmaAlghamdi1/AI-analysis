@@ -36,16 +36,16 @@ app.post('/contact',(req,res)=>{
     const query = 'INSERT INTO contacts(fullname,email,subject,message) VALUES (?,?,?,?)';
     db.query(query, [fullname, email, subject, message], (err, result) => {
     if (err) {
-      console.error('خطأ أثناء إدخال البيانات:', err);
-      res.status(500).json({ message: 'خطأ في السيرفر' });
+      console.error('Error while entering data:', err);
+      res.status(500).json({ message: 'Server error' });
     } else {
-      res.status(200).json({ message: 'تم استلام البيانات بنجاح' });
+      res.status(200).json({ message: 'The data has been received successfully.' });
     }
   });
 });
 
 
-const genAI = new GoogleGenerativeAI(process.env.API); // استبدل بـ API Key الحقيقي
+const genAI = new GoogleGenerativeAI(process.env.API); 
 
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
@@ -81,65 +81,17 @@ app.post('/analyze', upload.single("image"), async (req, res) => {
     });
 
     const response = await result.response;
-    const text = await response.text(); // هذا هو الصح
+    const text = await response.text(); 
 
-    fs.unlinkSync(imagePath); // حذف الصورة المؤقتة بعد ما تخلص
+    fs.unlinkSync(imagePath); 
 
     res.json({ result: text });
 
   } catch (err) {
     console.error("Error in /analyze:", err.message, err.stack);
     res.status(500).json({ error: "Failed to analyze image." });
-    // console.error("Analysis error:", err);
-    // res.status(500).json({ error: "Failed to analyze image." });
   }
 });
-
-
-// app.post("/analyze", upload.single("image"), async (req, res) => {
-//   const imagePath = req.file.path;
-//   const prompt = req.body.prompt;
-
-//   try {
-//     console.log("Received file:", req.file);
-//     const base64Image = fileToBase64(imagePath);
-    
-//     const imageData = await readFileAsBase64(imagePath);
-//     console.log("Image base64 length:", imageData.length); 
-
-//     const result = await model.generateContent({
-//       contents: [
-//         {
-//           parts: [
-//             {
-//               inlineData: {
-//                 mimeType: req.file.mimetype,
-//                 data: base64Image,
-//               },
-//             },
-//             {
-//               text: prompt,
-//             },
-//           ],
-//         },
-//       ],
-//     });
-
-//     const response = await result.response;
-//     const text = response.text();
-
-//     // احذف الصورة المؤقتة
-//     fs.unlinkSync(imagePath);
-
-//     const output = await result.text();
-//     res.json({ result: output });
-
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).json({ error: "Failed to analyze image." });
-//   }
-// });
-
 
 
 app.listen(PORT,()=>{

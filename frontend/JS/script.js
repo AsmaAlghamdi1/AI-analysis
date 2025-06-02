@@ -3,12 +3,6 @@ let menuIcon=document.querySelector("#menu-icon");
 let navbar = document.querySelector(".navbar");
 let sections = document.querySelectorAll("section");
 let navLink = document.querySelectorAll("header nav a");
-// document.getElementById('start').addEventListener('click',()=>{
-//     document.getElementById('blurBg').style.display='flex'
-// });
-// document.getElementById('close-btn').addEventListener('click',()=>{
-//     document.getElementById('blurBg').style.display='none'
-// });
 
 window.onscroll = () => {
     sections.forEach(sec =>{
@@ -102,7 +96,7 @@ menuIcon.onclick = () =>{
       })
       .catch((err) => {
         console.error("Error:", err);
-        alert("حدث خطأ أثناء تحليل التصميم.");
+        alert("An error occurred while parsing the design.");
       });
   });
     });
