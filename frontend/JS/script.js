@@ -92,7 +92,7 @@ menuIcon.onclick = () =>{
       .then((res) => res.json())
       .then((data) => {
         console.log("Server Response:", data);
-        document.querySelector(".analysis-UI").textContent = data.result;
+        document.querySelector(".analysis-UI").innerHTML = formatAnalysis(data.result);
       })
       .catch((err) => {
         console.error("Error:", err);
@@ -100,3 +100,22 @@ menuIcon.onclick = () =>{
       });
   });
     });
+
+function formatAnalysis(text) {
+  const lines = text.split('\n');
+  let html = '';
+
+  lines.forEach(line => {
+    if (line.startsWith('**') && line.endsWith('**')) {
+      html += `<h3>${line.replace(/\*\*/g, '')}</h3>`;
+    } else if (line.startsWith('* **')) {
+      html += `<p><strong>${line.replace('* **', '').replace(':**', ':</strong>')}</p>`;
+    } else if (line.startsWith('*')) {
+      html += `<p>${line.replace('* ', '• ')}</p>`;
+    } else if (line.trim() !== '') {
+      html += `<p>${line}</p>`;
+    }
+  });
+
+  return html;
+}
