@@ -107,7 +107,7 @@ function formatAnalysis(text) {
 
   lines.forEach(line => {
     if (line.startsWith('**') && line.endsWith('**')) {
-      html += `<h3 style="color: #00ffee;>${line.replace(/\*\*/g, '')}</h3>`;
+      html += `<h3>${line.replace(/\*\*/g, '')}</h3>`;
     } else if (line.startsWith('* **')) {
       html += `<p><strong>${line.replace('* **', '').replace(':**', ':</strong>')}</p>`;
     } else if (line.startsWith('*')) {
