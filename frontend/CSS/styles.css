@@ -422,13 +422,14 @@ span{
 }
 
 .analysis-UI{
-    padding: 1rem;
+   padding: 1rem;
    font-size:1.8rem;
    color:var(--text-color);
    border-radius: 1rem;
    border:2px solid var(--main-color);
    margin: 1.5rem 0;
    resize: none;
+   height: 40%;
 }
 /* .analysis-section h1{
     align-content: center;
