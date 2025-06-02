@@ -92,7 +92,8 @@ menuIcon.onclick = () =>{
       .then((res) => res.json())
       .then((data) => {
         console.log("Server Response:", data);
-        const text = data.result.split('\n');
+        const text = data.result.split('*');
+        const output = text.split('\n');
         document.querySelector(".analysis-UI").textContent = text;
       })
       .catch((err) => {
