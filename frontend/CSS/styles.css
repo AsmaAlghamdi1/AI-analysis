@@ -429,7 +429,8 @@ span{
    border:2px solid var(--main-color);
    margin: 1.5rem 0;
    resize: none;
-   height: 40%;
+   max-height: 25rem;
+   overflow-y: auto;
 }
 /* .analysis-section h1{
     align-content: center;
