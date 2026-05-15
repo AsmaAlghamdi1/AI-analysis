@@ -17,13 +17,42 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/", express.static("./frontend")); 
 
-const db = mysql.createConnection(process.env.DATABASE_URL);
-db.connect((err)=>{
-    if(err){
-        console.error("Database connection error:", err);
-    }else{
-        console.log("Connected to database");
-    }
+// Use a connection pool for more robust behavior (handles reconnects and multiple concurrent queries)
+// The pool can be created from a connection string (DATABASE_URL) or from individual env vars.
+const dbConfigFromUrl = process.env.DATABASE_URL;
+const db = dbConfigFromUrl
+  ? mysql.createPool(
+      // append connectionLimit if not present
+      dbConfigFromUrl + (dbConfigFromUrl.includes('?') ? '&' : '?') + 'connectionLimit=10'
+    )
+  // : mysql.createPool({
+  //     host: process.env.DB_HOST || 'localhost',
+  //     user: process.env.DB_USER || 'root',
+  //     password: process.env.DB_PASS || '',
+  //     database: process.env.DB_NAME || '',
+  //     port: process.env.DB_PORT ? Number(process.env.DB_PORT) : 3306,
+  //     waitForConnections: true,
+  //     connectionLimit: 10,
+  //     queueLimit: 0,
+  //   });
+  : mysql.createPool({
+  uri: process.env.DATABASE_URL,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
+  ssl: {
+    rejectUnauthorized: false,
+  },
+});
+
+// Test a connection from the pool and report helpful errors
+db.getConnection((err, connection) => {
+  if (err) {
+    console.error('Database connection error:', err);
+  } else {
+    console.log('Connected to database (pool)');
+    connection.release();
+  }
 });
 
 
@@ -47,7 +76,7 @@ app.post('/contact',(req,res)=>{
 
 const genAI = new GoogleGenerativeAI(process.env.API); 
 
-const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
 function fileToBase64(filePath) {
   const fileData = fs.readFileSync(filePath);
@@ -97,3 +126,17 @@ app.post('/analyze', upload.single("image"), async (req, res) => {
 app.listen(PORT,()=>{
     console.log(`server running on port ${PORT}`);
 });
+
+// Helpful, non-sensitive debug info: show host/port/user (masking password)
+if (dbConfigFromUrl) {
+  try {
+    const parsed = new URL(dbConfigFromUrl);
+    const dbHost = parsed.hostname;
+    const dbPort = parsed.port || '3306';
+    const dbUser = parsed.username || '(unknown)';
+    console.log(`DB config -> host: ${dbHost}, port: ${dbPort}, user: ${dbUser}`);
+  } catch (e) {
+    // If parsing fails we won't print the full connection string (security)
+    console.log('DB config: using connection string (unable to parse with URL parser)');
+  }
+}
