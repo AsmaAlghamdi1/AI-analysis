@@ -1,4 +1,4 @@
-const contactModel = require("../models/contactModel");
+const contactModel = require("../Models/contactModel");
 
 function saveContact(fullname, email, subject, message) {
   return new Promise((resolve, reject) => {
