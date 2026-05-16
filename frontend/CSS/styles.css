@@ -301,6 +301,63 @@ span{
     font-size: 16px;
     color:white;
 }
+#custom-alert {
+    position: fixed;
+    top: 24px;
+    left: 50%;
+    transform: translateX(-50%,-20px);
+    display: flex;
+    background: var(--second-bg-color);
+    color: white;
+    padding: 16px 22px;
+    border-right: 5px solid var(--main-color);
+    border-radius: 10px;
+    font-size: 15px;
+    opacity: 0;
+    transition: all 0.4s ease;
+    z-index: 9999;
+    min-width: 260px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+#custom-alert.show {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+#loading-spinner {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    z-index: 9998;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    gap: 14px;
+}
+
+.spinner {
+    width: 48px;
+    height: 48px;
+    border: 5px solid rgba(255, 255, 255, 0.2);
+    border-top: 5px solid var(--main-color);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+#loading-spinner p {
+    font-size: 15px;
+    color: white;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
 @media(max-width:1285px){
     html{
         font-size: 55%;
